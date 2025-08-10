@@ -1,5 +1,6 @@
 package com.alura.pix.service;
 
+import com.alura.pix.config.KafkaTopicConfig;
 import com.alura.pix.dto.PixDTO;
 import com.alura.pix.model.Pix;
 import com.alura.pix.repository.PixRepository;
@@ -20,7 +21,7 @@ public class PixService {
 
     public PixDTO salvarPix(PixDTO pixDTO){
         pixRepository.save(Pix.toEntity(pixDTO));
-        kafkaTemplate.send("pix-topic", pixDTO.getIdentifier(), pixDTO);
+        kafkaTemplate.send(KafkaTopicConfig.PIX_TOPIC, pixDTO.getIdentifier(), pixDTO);
         return pixDTO;
     }
 

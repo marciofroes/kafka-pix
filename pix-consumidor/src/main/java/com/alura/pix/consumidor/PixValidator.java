@@ -19,7 +19,7 @@ public class PixValidator {
     @Autowired
     private PixRepository pixRepository;
 
-    @KafkaListener(topics = "pix-topic", groupId = "grupo")
+    @KafkaListener(topics = "pix-topic", groupId = "grupo-2")
     public void processaPix(PixDTO pixDTO) {
         System.out.println("Pix  recebido: " + pixDTO.getIdentifier());
 
